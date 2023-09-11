@@ -1,0 +1,9 @@
+#compiled sources
+/tmp
+
+# configuration files
+.env
+/test/.env
+
+# go sum
+go.sum
