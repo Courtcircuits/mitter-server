@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Milou666/Mitter/util"
+	"github.com/Courtcircuits/mitter-server/util"
 )
 
 func TestVerifyJWTWhenValid(t *testing.T) {

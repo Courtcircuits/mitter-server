@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Milou666/Mitter/types"
-	"github.com/Milou666/Mitter/util"
+	"github.com/Courtcircuits/mitter-server/types"
+	"github.com/Courtcircuits/mitter-server/util"
 	_ "github.com/lib/pq"
 )
 

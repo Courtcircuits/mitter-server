@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Milou666/Mitter/util"
+	"github.com/Courtcircuits/mitter-server/util"
 	"github.com/gin-gonic/gin"
 )
 

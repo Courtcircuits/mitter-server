@@ -4,9 +4,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Milou666/Mitter/storage"
-	"github.com/Milou666/Mitter/types"
-	"github.com/Milou666/Mitter/util"
+	"github.com/Courtcircuits/mitter-server/storage"
+	"github.com/Courtcircuits/mitter-server/types"
+	"github.com/Courtcircuits/mitter-server/util"
 )
 
 func SignUpUser(s storage.Database, name string, password string) (string, error) {

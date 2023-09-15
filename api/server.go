@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Milou666/Mitter/controllers"
-	"github.com/Milou666/Mitter/storage"
-	"github.com/Milou666/Mitter/util"
+	"github.com/Courtcircuits/mitter-server/controllers"
+	"github.com/Courtcircuits/mitter-server/storage"
+	"github.com/Courtcircuits/mitter-server/util"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -18,6 +18,13 @@ type Server struct {
 	listenAddr string
 	router     *gin.Engine
 	store      storage.Database
+	hub        *Hub
+}
+
+var serv *Server
+
+func GetServer() *Server {
+	return serv
 }
 
 func NewServer(listenAddr string, store storage.Database) *Server {
@@ -30,11 +37,14 @@ func NewServer(listenAddr string, store storage.Database) *Server {
 
 	r.Use(cors.New(config))
 
-	return &Server{
+	serv = &Server{
 		listenAddr: listenAddr,
 		store:      store,
 		router:     r,
+		hub:        NewHub(),
 	}
+
+	return serv
 }
 
 func (s *Server) Start() error {
@@ -44,11 +54,21 @@ func (s *Server) Start() error {
 
 	s.router.POST("/signup", s.Signup)
 	s.router.POST("/login", s.Login)
+	s.router.GET("ws", s.ChatHandler)
 	critical_route.POST("/send", s.WriteMessage)
 	critical_route.GET("/messages", s.ReadMessages)
 
 	s.router.Run(s.listenAddr)
 	return http.ListenAndServe(s.listenAddr, nil)
+}
+
+func (s *Server) ChatHandler(c *gin.Context) {
+	err := Handler(c.Writer, c.Copy().Request, s.hub)
+	if err != nil {
+		log.Println(err)
+		c.AbortWithStatus(500)
+	}
+	log.Println("connection closed !")
 }
 
 func (s *Server) Signup(c *gin.Context) {

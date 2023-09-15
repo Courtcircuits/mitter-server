@@ -11,7 +11,7 @@ type Message struct {
 	ID         int    `json:"id,omitempty"`
 	Content    string `json:"content,omitempty"`
 	Timestamp  string `json:"timestamp,omitempty"`
-	Name_owner string `json:"name___owner,omitempty"`
+	Name_owner string `json:"name_owner,omitempty"`
 }
 
 func ScanMessage(row *sql.Row, name_creator string) (Message, error) {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/Milou666/Mitter/api"
-	"github.com/Milou666/Mitter/storage"
+	"github.com/Courtcircuits/mitter-server/api"
+	"github.com/Courtcircuits/mitter-server/storage"
 )
 
 func main() {
