@@ -2,6 +2,7 @@ package util
 
 import (
 	"log"
+	"os"
 
 	"github.com/spf13/viper"
 )
@@ -11,7 +12,7 @@ func Get(key string) string {
 	err := viper.ReadInConfig()
 
 	if err != nil {
-		log.Fatalf("error while .env %s", err)
+		return os.Getenv(key) //for production
 	}
 
 	value, ok := viper.Get(key).(string)
