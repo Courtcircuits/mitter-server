@@ -5,8 +5,4 @@
 .env
 /test/.env
 
-# go sum
-go.sum
-
-
 /vendor
